@@ -1,112 +1,240 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { router, useLocalSearchParams } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
-import { Collapsible } from '@/components/ui/collapsible';
-import { ExternalLink } from '@/components/external-link';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Fonts } from '@/constants/theme';
+import { locations } from '../../data/locations';
+import { useTheme } from '../hooks/useTheme';
 
-export default function TabTwoScreen() {
+export default function ExploreScreen() {
+  const theme = useTheme();
+
+  const { filter } = useLocalSearchParams();
+
+  const [search, setSearch] = useState('');
+  const [activeFilter, setActiveFilter] = useState(
+    typeof filter === 'string' ? filter : 'All'
+  );
+
+  useEffect(() => {
+    if (typeof filter === 'string') {
+      setActiveFilter(filter);
+    }
+  }, [filter]);
+
+  const filters = [
+    'All',
+    'Library',
+    'Coffee Shop',
+    'Academic Library',
+  ];
+
+  const filteredLocations = locations.filter((item) => {
+    const matchesFilter =
+      activeFilter === 'All' ||
+      item.category === activeFilter;
+
+    const matchesSearch = item.name
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    return matchesFilter && matchesSearch;
+  });
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
+    <ScrollView
+      style={[
+        styles.container,
+        { backgroundColor: theme.background },
+      ]}
+      showsVerticalScrollIndicator={false}
+    >
+      {/* TITLE */}
+      <Text
+        style={[
+          styles.title,
+          { color: theme.text },
+        ]}
+      >
+        Explore Spaces
+      </Text>
+
+      {/* SEARCH */}
+      <View
+        style={[
+          styles.searchContainer,
+          {
+            backgroundColor: theme.card,
+            borderColor: theme.border,
+          },
+        ]}
+      >
+        <Ionicons
+          name="search"
+          size={20}
+          color={theme.subtext}
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText
-          type="title"
-          style={{
-            fontFamily: Fonts.rounded,
-          }}>
-          Explore
-        </ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image
-          source={require('@/assets/images/react-logo.png')}
-          style={{ width: 100, height: 100, alignSelf: 'center' }}
+
+        <TextInput
+          placeholder="Search locations..."
+          placeholderTextColor={theme.subtext}
+          value={search}
+          onChangeText={setSearch}
+          style={[
+            styles.input,
+            { color: theme.text },
+          ]}
         />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user&apos;s current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful{' '}
-          <ThemedText type="defaultSemiBold" style={{ fontFamily: Fonts.mono }}>
-            react-native-reanimated
-          </ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+      </View>
+
+      {/* FILTERS */}
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={{ paddingHorizontal: 20 }}
+      >
+        {filters.map((item) => (
+          <TouchableOpacity
+            key={item}
+            onPress={() => setActiveFilter(item)}
+            style={[
+              styles.filterChip,
+              {
+                backgroundColor: theme.card,
+                borderColor: theme.border,
+              },
+              activeFilter === item &&
+                styles.activeChip,
+            ]}
+          >
+            <Text
+              style={
+                activeFilter === item
+                  ? styles.activeText
+                  : [
+                      styles.text,
+                      { color: theme.subtext },
+                    ]
+              }
+            >
+              {item}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+
+      {/* LIST */}
+      <View style={{ padding: 20 }}>
+        {filteredLocations.map((item) => (
+          <TouchableOpacity
+            key={item.id}
+            onPress={() =>
+              router.push(`/location/${item.id}`)
+            }
+            style={[
+              styles.card,
+              {
+                backgroundColor: theme.card,
+                borderColor: theme.border,
+              },
+            ]}
+          >
+            <Text
+              style={[
+                styles.name,
+                { color: theme.text },
+              ]}
+            >
+              {item.name}
+            </Text>
+
+            <Text
+              style={[
+                styles.meta,
+                { color: theme.subtext },
+              ]}
+            >
+              {item.category} 
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  container: {
+    flex: 1,
+    paddingTop: 60,
   },
-  titleContainer: {
+
+  title: {
+    fontSize: 22,
+    fontWeight: '800',
+    paddingHorizontal: 20,
+    marginBottom: 15,
+  },
+
+  searchContainer: {
     flexDirection: 'row',
-    gap: 8,
+    alignItems: 'center',
+    marginHorizontal: 20,
+    paddingHorizontal: 12,
+    borderRadius: 14,
+    height: 45,
+    marginBottom: 15,
+    borderWidth: 1,
+  },
+
+  input: {
+    marginLeft: 10,
+    flex: 1,
+  },
+
+  filterChip: {
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 20,
+    marginRight: 8,
+    borderWidth: 1,
+  },
+
+  activeChip: {
+    backgroundColor: '#2D6A4F',
+    borderColor: '#2D6A4F',
+  },
+
+  text: {
+    fontSize: 12,
+  },
+
+  activeText: {
+    fontSize: 12,
+    color: '#fff',
+  },
+
+  card: {
+    padding: 15,
+    borderWidth: 1,
+    borderRadius: 12,
+    marginBottom: 10,
+  },
+
+  name: {
+    fontSize: 16,
+    fontWeight: '700',
+  },
+
+  meta: {
+    fontSize: 13,
+    marginTop: 4,
   },
 });
