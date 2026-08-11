@@ -121,7 +121,7 @@ After launching the public beta, I shared the app across multiple developer, tes
 ### Current public testing results
 
 * **2,300+ combined public views/reach** across testing and product communities
-* **253 views / 163 unique visitors** on 1kusers
+* **270 views / 174 unique visitors** on 1kusers
 * **12 Product Hunt upvotes**
 * **8+ Peerlist upvotes**
 * **10 meaningful external contributors**
