@@ -246,6 +246,7 @@ The decision was to keep the core experience simpler.
 QuietHaven has a standalone Android APK available for public testing.
 
 **Android Build:**
+
 https://expo.dev/accounts/chidi064/projects/QuietHaven-Mobile/builds/fab9b65b-2356-412c-9eec-4f46462c4bf1
 
 ## iOS
@@ -253,6 +254,7 @@ https://expo.dev/accounts/chidi064/projects/QuietHaven-Mobile/builds/fab9b65b-23
 Early public testing has been distributed through Expo Go.
 
 **Expo Preview:**
+
 https://expo.dev/preview/update?message=QuietHaven+first+public+test&updateRuntimeVersion=1.0.0&createdAt=2026-06-26T01%3A22%3A42.203Z&slug=exp&projectId=1b269b1e-3472-4df0-86a1-7e76a8bc83a0&group=c2cb032f-b73e-4fe2-93bc-a8efbd9b1dbe
 
 > QuietHaven is currently in public beta and is not yet distributed through the Apple App Store.
@@ -265,16 +267,6 @@ https://expo.dev/preview/update?message=QuietHaven+first+public+test&updateRunti
 * Expo
 * Expo Router
 * TypeScript
-
-### Notable Implementation
-
-* Custom theming
-* Navigation
-* Native sharing
-* Location data management
-* Responsive layouts
-* Safe-area handling
-* Android APK builds
 
 ---
 
@@ -294,12 +286,5 @@ These features are **not part of the current MVP**. They represent directions in
 
 ---
 
-# 📌 Current Release
-
-**QuietHaven v1.0**
-
-* **Status:** Early MVP / Public Beta
-* **Current locations:** 15
-* **Public testing:** Ongoing
-
 Built with ❤️ for students.
+
