@@ -38,7 +38,7 @@ Every location was researched individually using available official sources and 
 
 # ✨ Features
 
-## 🔍 Explore Study Locations
+### 🔍 Explore Study Locations
 
 Browse curated locations organized into:
 
@@ -46,11 +46,9 @@ Browse curated locations organized into:
 * ☕ Coffee Shops
 * 🎓 Academic Spaces
 
----
+### 📍 Location Details
 
-## 📍 Location Details
-
-Each location has a dedicated details page containing information such as:
+Each location has a dedicated details page containing:
 
 * Location name
 * Address
@@ -59,9 +57,7 @@ Each location has a dedicated details page containing information such as:
 * Official website
 * Map directions
 
----
-
-## 🏷️ Amenities
+### 🏷️ Study Amenities
 
 QuietHaven tracks useful study-related amenities, including:
 
@@ -75,36 +71,26 @@ QuietHaven tracks useful study-related amenities, including:
 
 The goal is not simply to list locations, but to help students determine whether a location fits their needs.
 
----
-
-## 🌐 Official Sources
+### 🌐 Official Sources
 
 Each location can link to its official website so users can verify information and access the most current details directly from the source.
 
----
-
-## 🗺️ Maps & Directions
+### 🗺️ Maps & Directions
 
 Users can open directions to a location and navigate there using their device's map application.
 
----
-
-## 🌙 Light & Dark Mode
+### 🌙 Light & Dark Mode
 
 QuietHaven includes a custom theme system supporting:
 
 * ☀️ Light Mode
 * 🌙 Dark Mode
 
----
-
-## 📤 Share QuietHaven
+### 📤 Share QuietHaven
 
 QuietHaven uses the native device sharing functionality so users can easily share the app with friends and classmates.
 
----
-
-## ✉️ Feedback
+### ✉️ Feedback
 
 Users can send feedback directly from the app.
 
@@ -120,7 +106,7 @@ After launching the public beta, I shared the app across multiple developer, tes
 
 ### Current public testing results
 
-* **2,300+ combined public views/reach** across testing and product communities
+* **2,300+ combined public views** across testing and product communities
 * **270 views / 174 unique visitors** on 1kusers
 * **12 Product Hunt upvotes**
 * **8+ Peerlist upvotes**
@@ -144,8 +130,6 @@ Early testers found Expo Go confusing or inconvenient for testing the app.
 
 I created a **standalone Android APK** so Android testers could install QuietHaven directly instead of relying entirely on Expo Go.
 
-This was an important lesson:
-
 > A technically working product can still have a poor user experience if getting to the product is difficult.
 
 ---
@@ -164,7 +148,7 @@ I investigated the issue and implemented improved safe-area and bottom-padding h
 
 Multiple contributors raised an important question:
 
-> How will QuietHaven keep location information accurate as locations change?
+> **How will QuietHaven keep location information accurate as locations change?**
 
 This led me to think more seriously about the long-term data strategy rather than simply adding more locations.
 
@@ -174,9 +158,9 @@ For the current MVP, I prioritize **accuracy and manual curation over quantity**
 
 ## 🔊 Study Environment Is More Than Amenities
 
-Feedback also pushed the product beyond simply answering:
+Feedback pushed the product beyond simply answering:
 
-> "Does this place have Wi-Fi?"
+> **"Does this place have Wi-Fi?"**
 
 Contributors suggested information such as:
 
@@ -251,8 +235,6 @@ After reviewing the experience, I removed it because:
 
 The decision was to keep the core experience simpler.
 
-This reflects one of the project's main principles:
-
 > **Useful features are better than more features.**
 
 ---
@@ -279,66 +261,20 @@ https://expo.dev/preview/update?message=QuietHaven+first+public+test&updateRunti
 
 # 🛠️ Tech Stack
 
-### Mobile
-
 * React Native
 * Expo
 * Expo Router
 * TypeScript
 
-### Development
+### Notable Implementation
 
-* React Native components
 * Custom theming
 * Navigation
-* Modals
 * Native sharing
 * Location data management
-* Responsive/safe-area handling
-
----
-
-# 📂 Project Structure
-
-```text
-QuietHaven-Mobile/
-│
-├── app/                 # Application screens and navigation
-├── assets/images/       # App assets and images
-├── constants/           # Shared constants and configuration
-├── data/                # Curated location data
-├── lib/                 # Shared application logic
-├── scripts/             # Development scripts
-│
-├── app.json             # Expo configuration
-├── eas.json             # EAS build configuration
-├── package.json         # Dependencies and scripts
-└── tsconfig.json        # TypeScript configuration
-```
-
----
-
-# 🎓 What I Learned
-
-Building QuietHaven taught me that creating an app is only part of building a product.
-
-The project gave me experience with:
-
-* React Native development
-* Expo and mobile deployment
-* UI/UX decisions
-* Navigation architecture
-* Mobile safe-area handling
-* Android builds
-* Public beta testing
-* Collecting and interpreting user feedback
-* Debugging issues reported by external users
-* Product prioritization
-* Data accuracy and maintenance
-* Deciding when **not** to build a feature
-* Iterating based on real-world usage
-
-Most importantly, I learned to treat feedback as part of development rather than something that happens after development.
+* Responsive layouts
+* Safe-area handling
+* Android APK builds
 
 ---
 
@@ -354,33 +290,16 @@ Future versions of QuietHaven could explore:
 * 👤 Community contributions
 * 🔄 More scalable location-data management
 
-These features are not part of the current MVP. They represent directions informed by public testing and user feedback.
+These features are **not part of the current MVP**. They represent directions informed by public testing and user feedback.
 
 ---
 
-# 🎯 Project Goal
-
-QuietHaven is ultimately about reducing the time students spend searching for somewhere to study.
-
-A student should be able to open the app and quickly answer:
-
-> **"Where should I study today?"**
-
-without having to search through multiple websites or visit a location only to discover that it does not have what they need.
-
----
-
-## 📌 Current Release
+# 📌 Current Release
 
 **QuietHaven v1.0**
 
-**Status:** Early MVP / Public Beta
-
-**15 curated locations**
-
-**Public testing ongoing**
-
----
+* **Status:** Early MVP / Public Beta
+* **Current locations:** 15
+* **Public testing:** Ongoing
 
 Built with ❤️ for students.
-
